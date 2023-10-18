@@ -75,18 +75,7 @@ public class DashboardFragment extends Fragment {
         String cod = txt_cod.getText().toString();
         String des = txt_des.getText().toString();
         String pri = txt_pri.getText().toString();
-        if (cod.length() == 0){
-            txt_cod.setError("Campo obligatorio");
-            return;
-        }
-        if (des.length() == 0){
-            txt_des.setError("Campo obligatorio");
-            return;
-        }
-        if (pri.length() == 0){
-            txt_pri.setError("Campo obligatorio");
-            return;
-        }
+        validateForm();
         Product p = new Product();
         p.setCode(Integer.parseInt(cod));
         p.setDescription(des);
@@ -106,6 +95,7 @@ public class DashboardFragment extends Fragment {
     }
 
     public void edit(){
+        validateForm();
         for (Product product : products) {
             if (product.getCode() == Integer.parseInt(txt_cod.getText().toString())) {
                 product.setDescription(txt_des.getText().toString());
@@ -132,5 +122,39 @@ public class DashboardFragment extends Fragment {
         txt_des.setText("");
         txt_pri.setText("");
         txt_cod.requestFocus();
+    }
+
+    public void validateForm(){
+        String cod = txt_cod.getText().toString();
+        String des = txt_des.getText().toString();
+        String pri = txt_pri.getText().toString();
+        if (cod.length() == 0){
+            txt_cod.setError("Campo obligatorio");
+            showMessage("Campo obligatorio");
+            return;
+        }
+        if (des.length() == 0){
+            txt_des.setError("Campo obligatorio");
+            showMessage("Campo obligatorio");
+            return;
+        }
+        if (pri.length() == 0){
+            txt_pri.setError("Campo obligatorio");
+            showMessage("Campo obligatorio");
+            return;
+        }
+    }
+
+    public void showMessage(String message){
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void searchUniqueKey(Integer code){
+        for (Product product : products) {
+            if (product.getCode() == code) {
+                showMessage("Código duplicado");
+                return;
+            }
+        }
     }
 }
