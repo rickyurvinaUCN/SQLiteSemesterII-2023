@@ -12,9 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.sqlitesemesterii_2023.Pokemon;
 import com.example.sqlitesemesterii_2023.PokemonAPIService;
-import com.example.sqlitesemesterii_2023.PokemonFetchResults;
 import com.example.sqlitesemesterii_2023.PokemonListItem;
 import com.example.sqlitesemesterii_2023.PokemonListResponse;
 import com.example.sqlitesemesterii_2023.databinding.FragmentNotificationsBinding;
